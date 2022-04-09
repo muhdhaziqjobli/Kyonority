@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->boolean('is_verified')->nullable();
-            $table->boolean('is_admin')->nullable();
-            $table->rememberToken();
+            $table->integer('user_id', 5)->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('type')->nullable();
+            $table->string('holder_name')->nullable();
+            $table->string('account_number')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('bank_accounts');
     }
 };
