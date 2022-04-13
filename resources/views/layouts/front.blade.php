@@ -50,8 +50,12 @@
             <ul>
             <li><a class="nav-link active" href="{{ url('/home') }}">Home</a></li>
             <li><a class="nav-link" href="#">Map</a></li>
+            @if (Auth::check())
+            <li><a class="getstarted" href="{{ route('dashboard') }}">Dashboard</a></li>
+            @else
             <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
             <li><a class="getstarted" href="{{ route('register') }}">Click Here to Start Receiving Donations</a></li>
+            @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
