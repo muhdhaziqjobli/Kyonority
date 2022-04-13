@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->integer('donation_id')->nullable();
+            $table->unsignedInteger('donation_id')->nullable();
             $table->double('price', 5, 2)->nullable();
             $table->timestamps();
         });

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('details')->nullable();
             $table->boolean('is_active')->nullable();
             $table->timestamps();

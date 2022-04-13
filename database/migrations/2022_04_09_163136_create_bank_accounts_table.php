@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('bank_accounts', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id', 5)->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('bank_name')->nullable();
             $table->string('type')->nullable();
             $table->string('holder_name')->nullable();

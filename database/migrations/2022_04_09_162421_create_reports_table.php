@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id', 5)->nullable();
-            $table->integer('donation_count', 5)->nullable();
+            $table->unsignedInteger('user_id')->nullable();
+            $table->integer('donation_count')->nullable();
             $table->double('total_price', 5, 2)->nullable();
-            $table->integer('no_of_users', 5)->nullable();
+            $table->integer('no_of_users')->nullable();
             $table->timestamps();
         });
     }

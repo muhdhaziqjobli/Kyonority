@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id', 5)->nullable();
+            $table->unsignedInteger('user_id')->nullable();
             $table->string('name')->nullable();
             $table->integer('age')->nullable();
             $table->string('address')->nullable();
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->string('income', 8, 2)->nullable();
             $table->string('occupation')->nullable();
-            $table->smallInt('household_member', 3)->nullable();
+            $table->integer('household_member')->nullable();
             $table->string('bio')->nullable();
             $table->string('files')->nullable();
             $table->timestamps();
