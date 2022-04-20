@@ -30,6 +30,7 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input type="checkbox" class="" onclick="showPassword()">Show
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -44,6 +45,7 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input type="checkbox" class="" onclick="showConfirmPassword()">Show
                             </div>
                         </div>
 
@@ -61,3 +63,24 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+    function showPassword() {
+        var x = document.getElementById("password");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    function showConfirmPassword() {
+        var x = document.getElementById("password-confirm");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+@endpush

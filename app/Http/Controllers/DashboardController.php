@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class DashboardController extends Controller
 {
@@ -23,6 +24,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        if (Auth::user()->user_detail) {
+            return view('dashboard');
+        } else {
+            return redirect('/user-details/create');
+        }
     }
 }
