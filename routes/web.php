@@ -31,3 +31,8 @@ Route::post('/user-details', [App\Http\Controllers\UserDetailController::class, 
 Route::get('/requests/create', [App\Http\Controllers\RequestController::class, 'create'])->name('requests.create');
 Route::post('/requests', [App\Http\Controllers\RequestController::class, 'store'])->name('requests.store');
 Route::post('/requests/{id}', [App\Http\Controllers\RequestController::class, 'update_status'])->name('requests.update_status');
+
+Route::get('/bank-accounts', [App\Http\Controllers\BankAccountController::class, 'index'])->name('bank_accounts.index');
+Route::get('/bank-accounts/create', [App\Http\Controllers\BankAccountController::class, 'create'])->name('bank_accounts.create');
+Route::post('/bank-accounts', [App\Http\Controllers\BankAccountController::class, 'store'])->name('bank_accounts.store');
+Route::delete('/bank-accounts/{id}', [App\Http\Controllers\BankAccountController::class, 'destroy'])->name('bank_accounts.destroy');

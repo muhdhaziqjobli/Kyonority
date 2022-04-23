@@ -18,7 +18,7 @@
 
     <!-- Content Row -->
     <div class="row">
-        <div class="col-xl-4">
+        <div class="col-xl-6">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -44,6 +44,29 @@
                         <span class="btn-sm bg-success text-white shadow">Verified</span>
                     @else
                         <span class="btn-sm bg-warning text-white shadow">Unverified</span>
+                    @endif
+                    <br><br>
+                    Bank Accounts:
+                    @if (Auth::user()->bank_accounts->count() == 0)
+                        <span class="btn-sm bg-warning text-white shadow">Nil</span>
+                    @else
+                        @php
+                            $bank_accounts = Auth::user()->bank_accounts;
+                        @endphp
+                        <table class="table table-sm table-borderless">
+                            @foreach ($bank_accounts as $bank_account)
+                            <tr>
+                                <th>{{ $bank_account->bank_name }}</th>
+                                <td>{{ $bank_account->account_number }}</td>
+                                <td></td>
+                                <td>
+                                    {{ Form::open(['url' => route('bank_accounts.destroy', $bank_account->id), 'method' => 'delete']) }}
+                                    <button class="btn btn-sm text-danger" type="submit"><i class="fas fw fa-backspace"></i></button>
+                                    {{ Form::close() }}
+                                </td>
+                            </tr>
+                            @endforeach
+                        </table>
                     @endif
                 </div>
             </div>

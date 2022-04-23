@@ -50,7 +50,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                Profile
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -58,14 +58,22 @@
                 <a class="nav-link collapsed" href="#collapseTwo" data-bs-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Profile</span>
+                    <span>Bank Accounts</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Add Bank Account</a>
-                        <a class="collapse-item" href="#">Set Location</a>
+                        <a class="collapse-item" href="{{ route('bank_accounts.create') }}">Add</a>
+                        <a class="collapse-item" href="{{ route('bank_accounts.index') }}">View</a>
                     </div>
                 </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-map-pin"></i>
+                    <span>Set Location</span>
+                </a>
             </li>
 
             <!-- Divider -->
