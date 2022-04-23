@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserDetail;
+use App\Models\User;
 
 class UserDetailController extends Controller
 {
@@ -14,8 +15,14 @@ class UserDetailController extends Controller
 
     public function store(Request $request)
     {
-        $company = UserDetail::create($request->all());
+        $user = User::find($request->user_id);
 
-        return redirect('/dashboard');
+        if ($user->user_detail()->exists()) {
+            return redirect('/dashboard')->withErrors('User cannot have more than one detail!');
+        } else {
+            $userDetail = UserDetail::create($request->all());
+
+            return redirect('/dashboard');
+        }
     }
 }
