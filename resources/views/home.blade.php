@@ -11,6 +11,25 @@
 
     <div class="row">
 
+        @foreach ($requests as $request)
+            <div class="col-4 mt-4">
+                <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+                <div class="pic"><img src="{{ asset('assets/img/undraw_profile.svg') }}" class="img-fluid" alt=""></div>
+                <div class="member-info">
+                    <h4>{{ $request->user->user_detail->name }}</h4>
+                    <span>{{ $request->user->user_detail->occupation }}, {{ $request->user->user_detail->age }}</span>
+                    <p>{{ $request->details }}</p>
+                    <div class="social">
+                    <a href=""><i class="ri-twitter-fill"></i></a>
+                    <a href=""><i class="ri-facebook-fill"></i></a>
+                    <a href=""><i class="ri-instagram-fill"></i></a>
+                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        @endforeach
+
     <div class="col-4 mt-4">
         <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
         <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>

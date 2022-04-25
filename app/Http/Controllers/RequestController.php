@@ -8,6 +8,11 @@ use App\Models\User;
 
 class RequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function create()
     {
         return view('requests.create');

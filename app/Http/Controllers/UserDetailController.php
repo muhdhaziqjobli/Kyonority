@@ -8,6 +8,11 @@ use App\Models\User;
 
 class UserDetailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function create()
     {
         return view('user_details');
