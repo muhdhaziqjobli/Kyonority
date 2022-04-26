@@ -25,7 +25,16 @@ class DashboardController extends Controller
     public function index()
     {
         if (Auth::user()->user_detail) {
-            return view('dashboard');
+            $user = Auth::user();
+            
+            $icons = $user->request->icons;
+            
+            $data = compact([
+                'user',
+                'icons'
+            ]);
+
+            return view('dashboard', $data);
         } else {
             return redirect('/user-details/create');
         }

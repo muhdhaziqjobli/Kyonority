@@ -9,10 +9,15 @@ class Request extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'icons' => 'array',
+    ];
+
     protected $fillable = [
         'user_id',
         'details',
         'is_active',
+        'icons',
     ];
 
     public function user()

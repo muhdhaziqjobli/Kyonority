@@ -122,7 +122,7 @@
                             <div>{{ $request->user->user_detail->age }}</div>
                             <div>{{ $request->user->user_detail->occupation }}</div>
                             <div>{{ $request->user->user_detail->address }}</div>
-                            <div>{{ $request->user->user_detail->postcode }}</div>
+                            <div>{{ $request->user->user_detail->postcode }}, {{ $request->user->user_detail->city }}</div>
                             <div class="mb-3">{{ $request->user->user_detail->state }}</div>
 
                             <p>{{ $request->details }}</p>

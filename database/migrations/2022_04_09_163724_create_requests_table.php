@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('user_id')->nullable();
             $table->string('details')->nullable();
+            $table->string('icons')->nullable();
             $table->boolean('is_active')->nullable();
             $table->timestamps();
         });

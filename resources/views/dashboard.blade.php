@@ -40,18 +40,18 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     Status: 
-                    @if (Auth::user()->is_verified)
+                    @if ($user->is_verified)
                         <span class="btn-sm bg-success text-white shadow">Verified</span>
                     @else
                         <span class="btn-sm bg-warning text-white shadow">Unverified</span>
                     @endif
                     <br><br>
                     Bank Accounts:
-                    @if (Auth::user()->bank_accounts->count() == 0)
+                    @if ($user->bank_accounts->count() == 0)
                         <span class="btn-sm bg-warning text-white shadow">Nil</span>
                     @else
                         @php
-                            $bank_accounts = Auth::user()->bank_accounts;
+                            $bank_accounts = $user->bank_accounts;
                         @endphp
                         <table class="table table-sm table-borderless">
                             @foreach ($bank_accounts as $bank_account)
@@ -86,33 +86,40 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                             aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">Edit</a>
-                            @if (Auth::user()->request->is_active)
-                                <a class="dropdown-item" href="#" id="updateStatus">Deactivate</a>
-                            @else
-                                <a class="dropdown-item" href="#" id="updateStatus">Activate</a>
+                            @if ($user->request)
+                                <a class="dropdown-item" href="{{ route('requests.edit',$user->request->id) }}">Edit</a>
+                                @if ($user->request->is_active)
+                                    <a class="dropdown-item" href="#" id="updateStatus">Deactivate</a>
+                                @else
+                                    <a class="dropdown-item" href="#" id="updateStatus">Activate</a>
+                                @endif
+                                <div class="dropdown-divider"></div>
+                                {{ Form::open(['url' => route('requests.destroy', $user->request->id), 'method' => 'delete']) }}
+                                <button class="dropdown-item" type="submit">Delete</button>
+                                {{ Form::close() }}
                             @endif
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Delete</a>
                         </div>
                     </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    @if (Auth::user()->request)
-                        @php
-                            $request_id = Auth::user()->request->id;
-                        @endphp
+                    @if ($user->request)
                         Status:
-                        @if (Auth::user()->request->is_active)
+                        @if ($user->request->is_active)
                             <span class="btn-sm bg-success text-white shadow">Active</span>
                         @else
                             <span class="btn-sm bg-warning text-white shadow">Unactive</span>
                         @endif
                         <br>
-                        Created on: {{ Auth::user()->request->created_at }}<br><br>
+                        Created on: {{ $user->request->created_at }}<br><br>
 
-                        Details: {{ Auth::user()->request->details }}
+                        Details: {{ $user->request->details }} <br>
+
+                        Preferred Aids:
+                        @if (in_array('food',$icons)) <i class="fa-solid fa-bowl-food"></i> @endif
+                        @if (in_array('money',$icons)) <i class="fas fa-money-bill"></i> @endif
+                        @if (in_array('baby',$icons)) <i class="fas fa-baby"></i> @endif
+                        @if (in_array('medicine',$icons)) <i class="fas fa-capsules"></i> @endif
                     @else
                         You have no aid request. <a href="{{ route('requests.create') }}">Create one here</a>
                     @endif
@@ -125,15 +132,16 @@
 @push('js')
 <script>
     $(document).ready(function(){
+        @if ($user->request)
         $("#updateStatus").click(function(){
-            @if (Auth::user()->request->is_active)
+            @if ($user->request->is_active)
                 is_active = 0;
             @else
                 is_active = 1;
             @endif
 
             $.ajax({
-                url: "{{ route('requests.update_status',[Auth::user()->request->id]) }}",
+                url: "{{ route('requests.update_status',[$user->request->id]) }}",
                 method: 'POST',
                 data:{
                     is_active:is_active,
@@ -148,6 +156,7 @@
                 },
             });
         });
+        @endif
     });
 </script>    
 @endpush

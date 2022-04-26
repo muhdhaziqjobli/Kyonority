@@ -22,13 +22,32 @@ class RequestController extends Controller
     {
         $user = User::findOrFail($request->user_id);
 
-        if ($user->user_detail()->exists()) {
+        if ($user->request()->exists()) {
             return redirect('/dashboard')->withErrors('User cannot have more than one request!');
         } else {
-            $request = Req::create($request->all());
+            // dd($request->all());
+            $req = Req::create($request->all());
 
             return redirect('/dashboard')->with('success','Created successfully!');
         }
+    }
+
+    public function edit($id)
+    {
+        $request = Req::findOrFail($id);
+
+        $data = compact([
+            'request'
+        ]);
+
+        return view('requests.edit', $data);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $req = Req::findOrFail($id);
+        $req->update($request->all());
+        return redirect('/dashboard')->with('success','Editted successfully!');
     }
 
     public function update_status($id) {
@@ -38,5 +57,11 @@ class RequestController extends Controller
         $request->save();
 
         return redirect()->route('dashboard');
+    }
+
+    public function destroy($id)
+    {
+        Req::destroy($id);
+        return back()->with('success','Deleted!');
     }
 }

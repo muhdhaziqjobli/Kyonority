@@ -46,6 +46,14 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="city" class="col-md-4 col-form-label text-md-end">City</label>
+
+                            <div class="col-md-6">
+                                <input id="city" type="text" class="form-control" name="city" value="" required autocomplete="city">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="state" class="col-md-4 col-form-label text-md-end">State</label>
 
                             <div class="col-md-6">

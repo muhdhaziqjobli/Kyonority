@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('age')->nullable();
             $table->string('address')->nullable();
             $table->integer('postcode')->nullable();
+            $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('coord')->nullable();
             $table->string('phone_number')->nullable();

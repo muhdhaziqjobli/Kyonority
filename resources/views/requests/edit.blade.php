@@ -11,11 +11,12 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center">
-                    <h6 class="m-0 font-weight-bold text-primary">Create Request</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Edit Request</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form method="POST" action="{{ route('requests.store') }}">
+                    <form method="POST" action="{{ route('requests.update',$request->id) }}">
+                        @method('PUT')
                         @csrf
 
                         <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
@@ -25,7 +26,7 @@
                             <label for="details" class="col-2 col-form-label text-md-end">Details</label>
 
                             <div class="col-6">
-                                <textarea class="form-control" name="details" id="details" cols="30" rows="10" required autocomplete="details"></textarea>
+                                <textarea class="form-control" name="details" id="details" cols="30" rows="10" required autocomplete="details">{{ $request->details }}</textarea>
                             </div>
                         </div>
 
@@ -33,22 +34,22 @@
                             <label for="icons" class="col-2 col-form-label text-md-end">Preferred Aids</label>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="icons[]" value="food" />
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="icons[]" value="food" @if (in_array('food',$request->icons)) checked @endif/>
                                 <label class="form-check-label" for="inlineCheckbox1"><i class="fa-solid fa-bowl-food"></i></label>
                             </div>
                             
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="icons[]" value="money" />
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="icons[]" value="money" @if (in_array('money',$request->icons)) checked @endif/>
                                 <label class="form-check-label" for="inlineCheckbox2"><i class="fas fa-money-bill"></i></label>
                             </div>
                             
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="icons[]" value="baby" />
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="icons[]" value="baby" @if (in_array('baby',$request->icons)) checked @endif/>
                                 <label class="form-check-label" for="inlineCheckbox3"><i class="fas fa-baby"></i></label>
                             </div>
 
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="icons[]" value="medicine" />
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="icons[]" value="medicine" @if (in_array('medicine',$request->icons)) checked @endif/>
                                 <label class="form-check-label" for="inlineCheckbox3"><i class="fas fa-capsules"></i></label>
                             </div>
                         </div>
