@@ -11,6 +11,8 @@ class HomeController extends Controller
         $requests = Request::where('is_active', 1)
                     ->get();
 
+        // dd($requests);
+
         $data = compact([
             'requests'
         ]);

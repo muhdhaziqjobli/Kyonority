@@ -20,10 +20,10 @@
                     <span>{{ $request->user->user_detail->occupation }}, {{ $request->user->user_detail->age }}</span>
                     <p>{{ $request->details }}</p>
                     <div class="social">
-                    <a href=""><i class="ri-twitter-fill"></i></a>
-                    <a href=""><i class="ri-facebook-fill"></i></a>
-                    <a href=""><i class="ri-instagram-fill"></i></a>
-                    <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                        @if (in_array('food',$request->icons)) <a href="#"><i class="fa-solid fa-bowl-food"></i></a> @endif
+                        @if (in_array('money',$request->icons)) <a href="#"><i class="fas fa-money-bill"></i></a> @endif
+                        @if (in_array('baby',$request->icons)) <a href="#"><i class="fas fa-baby"></i></a> @endif
+                        @if (in_array('medicine',$request->icons)) <a href="#"><i class="fas fa-capsules"></i></a> @endif
                     </div>
                 </div>
                 </div>
@@ -119,18 +119,16 @@
                             <img src="{{ asset('assets/img/undraw_profile.svg') }}" class="img-fluid" alt="" style="width:128px;height:128px;">
                         </div>
                         <div class="col-8">
-                            <div>{{ $request->user->user_detail->age }}</div>
-                            <div>{{ $request->user->user_detail->occupation }}</div>
                             <div>{{ $request->user->user_detail->address }}</div>
                             <div>{{ $request->user->user_detail->postcode }}, {{ $request->user->user_detail->city }}</div>
                             <div class="mb-3">{{ $request->user->user_detail->state }}</div>
 
                             <p>{{ $request->details }}</p>
-                            <div class="social mb-3">
-                                <a href=""><i class="ri-twitter-fill"></i></a>
-                                <a href=""><i class="ri-facebook-fill"></i></a>
-                                <a href=""><i class="ri-instagram-fill"></i></a>
-                                <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                            <div class="modal-icons mb-3">
+                                @if (in_array('food',$request->icons)) <a href="#"><i class="fa-solid fa-bowl-food"></i></a> @endif
+                                @if (in_array('money',$request->icons)) <a href="#"><i class="fas fa-money-bill"></i></a> @endif
+                                @if (in_array('baby',$request->icons)) <a href="#"><i class="fas fa-baby"></i></a> @endif
+                                @if (in_array('medicine',$request->icons)) <a href="#"><i class="fas fa-capsules"></i></a> @endif
                             </div>
 
                             <button class="btn btn-sm btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#bankModal{{$request->id}}">Show Bank Accounts</button>
@@ -169,3 +167,21 @@
     </div>
 @endforeach
 @endsection
+
+@push('css')
+    <style>
+        .modal-icons a {
+            display: inline;
+            border-radius: 50px;
+            width: 32px;
+            height: 32px;
+            background: #eff2f8;
+            pointer-events: none;
+        }
+
+        .modal-icons a i {
+            color: #37517e;
+            margin: 0 2px;
+        }
+    </style>
+@endpush

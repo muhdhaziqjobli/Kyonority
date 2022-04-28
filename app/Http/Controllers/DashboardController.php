@@ -26,13 +26,19 @@ class DashboardController extends Controller
     {
         if (Auth::user()->user_detail) {
             $user = Auth::user();
-            
-            $icons = $user->request->icons;
-            
-            $data = compact([
-                'user',
-                'icons'
-            ]);
+
+            if ($user->request) {
+                $icons = $user->request->icons;
+
+                $data = compact([
+                    'user',
+                    'icons'
+                ]);
+            } else {
+                $data = compact([
+                    'user'
+                ]);
+            }
 
             return view('dashboard', $data);
         } else {

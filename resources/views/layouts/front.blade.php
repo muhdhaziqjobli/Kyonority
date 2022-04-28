@@ -34,6 +34,8 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <script src="https://kit.fontawesome.com/83a538ae48.js" crossorigin="anonymous"></script>
+    @stack('css')
     </head>
 
     <body>
