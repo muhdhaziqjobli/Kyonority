@@ -26,6 +26,10 @@ Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'inde
 Route::get('/user-details/create', [App\Http\Controllers\UserDetailController::class, 'create'])->name('user_details.create');
 Route::post('/user-details', [App\Http\Controllers\UserDetailController::class, 'store'])->name('user_details.store');
 
+Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/{id}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
 Route::get('/requests/create', [App\Http\Controllers\RequestController::class, 'create'])->name('requests.create');
 Route::post('/requests', [App\Http\Controllers\RequestController::class, 'store'])->name('requests.store');
 Route::get('/requests/edit/{id}', [App\Http\Controllers\RequestController::class, 'edit'])->name('requests.edit');

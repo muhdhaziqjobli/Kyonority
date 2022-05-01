@@ -70,10 +70,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="Income" class="col-md-4 col-form-label text-md-end">Income(RM)</label>
+                            <label for="income" class="col-md-4 col-form-label text-md-end">Income(RM)</label>
 
                             <div class="col-md-6">
-                                <input id="Income" type="number" class="form-control" name="Income" value="" required autocomplete="Income">
+                                <input id="income" type="number" class="form-control" name="income" value="" required autocomplete="income">
                             </div>
                         </div>
 

@@ -31,9 +31,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                             aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">View</a>
+                            <a class="dropdown-item" href="{{ route('profile.show', $user->id) }}">View</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Edit</a>
+                            <a class="dropdown-item" href="{{ route('profile.edit',$user->id) }}">Edit</a>
                         </div>
                     </div>
                 </div>
