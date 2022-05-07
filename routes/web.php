@@ -41,3 +41,5 @@ Route::get('/bank-accounts', [App\Http\Controllers\BankAccountController::class,
 Route::get('/bank-accounts/create', [App\Http\Controllers\BankAccountController::class, 'create'])->name('bank_accounts.create');
 Route::post('/bank-accounts', [App\Http\Controllers\BankAccountController::class, 'store'])->name('bank_accounts.store');
 Route::delete('/bank-accounts/{id}', [App\Http\Controllers\BankAccountController::class, 'destroy'])->name('bank_accounts.destroy');
+
+Route::get('/location', [App\Http\Controllers\LocationController::class, 'create'])->name('location.create');

@@ -71,7 +71,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('location.create') }}">
                     <i class="fas fa-fw fa-map-pin"></i>
                     <span>Set Location</span>
                 </a>
