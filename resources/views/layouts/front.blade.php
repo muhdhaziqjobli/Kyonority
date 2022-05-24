@@ -51,7 +51,7 @@
         <nav id="navbar" class="navbar">
             <ul>
             <li><a class="nav-link active" href="{{ route('home') }}">Home</a></li>
-            <li><a class="nav-link" href="#">Map</a></li>
+            {{-- <li><a class="nav-link" href="#">Map</a></li> --}}
             @if (Auth::check())
             <li><a class="getstarted" href="{{ route('dashboard') }}">Dashboard</a></li>
             @else
