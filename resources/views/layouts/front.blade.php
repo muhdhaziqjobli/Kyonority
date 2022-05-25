@@ -66,7 +66,7 @@
     </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center" style="height: 100vh">
 
         <div class="container">
         <div class="row">
