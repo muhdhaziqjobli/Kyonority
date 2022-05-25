@@ -43,3 +43,7 @@ Route::post('/bank-accounts', [App\Http\Controllers\BankAccountController::class
 Route::delete('/bank-accounts/{id}', [App\Http\Controllers\BankAccountController::class, 'destroy'])->name('bank_accounts.destroy');
 
 Route::get('/location', [App\Http\Controllers\LocationController::class, 'create'])->name('location.create');
+
+Route::get('/users', [App\Http\Controllers\AdminController::class, 'user_index'])->name('admin.user_list');
+Route::get('/unverified_users', [App\Http\Controllers\AdminController::class, 'unverified_users'])->name('admin.unverified_users');
+Route::post('/unverified_users/{id}', [App\Http\Controllers\AdminController::class, 'verify'])->name('admin.verify');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 use Auth;
 
 class DashboardController extends Controller
@@ -24,7 +25,17 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->user_detail) {
+        if (Auth::user()->is_admin) {
+            $unverified_users = User::where('is_verified')->orWhere('is_verified', false)->get();
+
+            $data = compact([
+                'unverified_users'
+            ]);
+
+            return view('admin_dashboard',$data);
+        }
+
+        else if (Auth::user()->user_detail) {
             $user = Auth::user();
 
             if ($user->request) {
@@ -41,7 +52,9 @@ class DashboardController extends Controller
             }
 
             return view('dashboard', $data);
-        } else {
+        } 
+        
+        else {
             return redirect('/user-details/create');
         }
     }
