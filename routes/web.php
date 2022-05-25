@@ -29,6 +29,8 @@ Route::post('/user-details', [App\Http\Controllers\UserDetailController::class, 
 Route::get('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 Route::get('/profile/{id}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+Route::get('/profile/{id}/download', [App\Http\Controllers\ProfileController::class, 'download'])->name('profile.download');
+Route::get('/profile/{id}/delete', [App\Http\Controllers\ProfileController::class, 'delete'])->name('profile.delete');
 
 Route::get('/requests/create', [App\Http\Controllers\RequestController::class, 'create'])->name('requests.create');
 Route::post('/requests', [App\Http\Controllers\RequestController::class, 'store'])->name('requests.store');

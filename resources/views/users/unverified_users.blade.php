@@ -26,7 +26,15 @@
                         <tr data-bs-toggle="modal" data-bs-target="#modal{{$user->id}}">
                             <td>{{ $user->user_detail->name ?? 'N/A' }}</td>
                             <td>{{ $user->email }}</td>
-                            <td></td>
+                            <td>
+                                @forelse ($user->files as $file)
+                                    <div>
+                                        <a href="{{ route('profile.download',$file->id) }}">{{ $file->name }}</a>
+                                    </div>
+                                @empty
+                                    N/A
+                                @endforelse
+                            </td>
                             <td> <input type="checkbox" id="{{ $user->id }}" class="ml-5"> </td>
                         </tr>
                         @endforeach

@@ -76,6 +76,27 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-3 mt-3">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Files Uploaded</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    @forelse ($user->files as $file)
+                    <div>
+                        <a href="{{ route('profile.download',$file->id) }}">{{ $file->name }}</a>
+                        <span class="float-end"><a href="{{ route('profile.delete',$file->id) }}" class="btn btn-sm text-danger"><i class="fas fw fa-backspace"></i></a></span>
+                    </div>
+                    @empty
+                        N/A
+                    @endforelse
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-xl-12">

@@ -1,7 +1,7 @@
 @extends('layouts.back')
 
 @section('content')
-{{ Form::open(['url' => route('profile.update', $user->id), 'method' => 'put']) }}
+{{ Form::open(['url' => route('profile.update', $user->id), 'method' => 'put', 'files' => true]) }}
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Edit Profile</h1>
         <span>
@@ -22,6 +22,33 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <textarea class="form-control" name="bio" id="bio" cols="30" rows="10">{{$user->user_detail->bio}}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Upload Files</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div>Uploaded Files:</div>
+                    <div>
+                        @forelse ($user->files as $file)
+                            <div>
+                                <a href="{{ route('profile.download',$file->id) }}">{{ $file->name }}</a>
+                                <span class="float-end"><a href="{{ route('profile.delete',$file->id) }}" class="btn btn-sm text-danger"><i class="fas fw fa-backspace"></i></a></span>
+                            </div>
+                        @empty
+                            N/A
+                        @endforelse
+                    </div>
+                    <br>
+                    <div>*Only files is .zip format</div>
+                    <input type="file" name="file" accept=".zip">
                 </div>
             </div>
         </div>
