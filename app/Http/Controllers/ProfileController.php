@@ -62,6 +62,19 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.show', $id)->with('success','Editted successfully!');
     }
+    
+    public function change_image(Request $request, $id)
+    {
+        $fileName = time().'_'.$request->image->getClientOriginalName();
+        $request->file('image')->storeAs('images', $fileName, 'public');
+
+        $user = User::findOrFail($id);
+        $user_detail = UserDetail::findOrFail($user->user_detail->id);
+        $user_detail->files = $fileName;
+        $user_detail->save();
+
+        return back();
+    }
 
     public function download($id)
     {

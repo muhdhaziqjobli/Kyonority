@@ -108,8 +108,11 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->user_detail->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ asset('assets/img/undraw_profile.svg') }}">
+                                @if (Auth::user()->user_detail->files)
+                                    <img class="img-profile rounded-circle" src="{{ asset('storage/images/'.Auth::user()->user_detail->files) }}" class="img-fluid" alt="">
+                                @else
+                                    <img class="img-profile rounded-circle" src="{{ asset('assets/img/undraw_profile.svg') }}">
+                                @endif
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

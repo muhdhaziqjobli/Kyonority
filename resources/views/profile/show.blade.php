@@ -21,9 +21,16 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row mb-5">
+    <div class="row mb-5 align-items-center">
         <div class="col-2 mx-5">
-            <img src="{{ asset('assets/img/undraw_profile.svg') }}" class="img-fluid" alt="">
+            {{ Form::open(['url' => route('profile.change_image', $user->id), 'method' => 'put', 'files' => true]) }}
+            <input type="file" id="imgupload" name="image" onchange="this.form.submit()" style="display:none"/>
+            {{ Form::close() }}
+            @if ($user->user_detail->files)
+                <a href="#"><img class="d-block img-fluid" src="{{ asset('storage/images/'.$user->user_detail->files) }}" class="img-fluid" alt="" id="image"></a>
+            @else
+                <a href="#"><img src="{{ asset('assets/img/undraw_profile.svg') }}" class="img-fluid" alt="" id="image"></a>
+            @endif
         </div>
 
         <div class="col-6 mt-3">
@@ -123,3 +130,11 @@
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        $(document).ready(function(){
+            $('#image').click(function(){ $('#imgupload').trigger('click'); });
+        });
+    </script>
+@endpush

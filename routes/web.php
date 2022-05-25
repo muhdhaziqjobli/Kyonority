@@ -31,6 +31,7 @@ Route::get('/profile/{id}/edit', [App\Http\Controllers\ProfileController::class,
 Route::put('/profile/{id}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 Route::get('/profile/{id}/download', [App\Http\Controllers\ProfileController::class, 'download'])->name('profile.download');
 Route::get('/profile/{id}/delete', [App\Http\Controllers\ProfileController::class, 'delete'])->name('profile.delete');
+Route::put('/profile/{id}/change_image', [App\Http\Controllers\ProfileController::class, 'change_image'])->name('profile.change_image');
 
 Route::get('/requests/create', [App\Http\Controllers\RequestController::class, 'create'])->name('requests.create');
 Route::post('/requests', [App\Http\Controllers\RequestController::class, 'store'])->name('requests.store');
