@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('donations', function (Blueprint $table) {
-            $table->id();
+        Schema::create('donator_request', function (Blueprint $table) {
+            $table->unsignedInteger('donator_id')->nullable();
             $table->unsignedInteger('request_id')->nullable();
             $table->string('type')->nullable();
+            $table->double('price', 5, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('donations');
+        Schema::dropIfExists('donator_request');
     }
 };

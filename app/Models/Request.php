@@ -25,8 +25,11 @@ class Request extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function donations()
+    public function donators()
     {
-        return $this->hasMany(Donation::class);
+        return $this->belongsToMany(Donator::class)
+                ->as('donation')
+                ->withPivot('type', 'price')
+                ->withTimestamps();
     }
 }

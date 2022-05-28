@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class DonatorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'email' => 'admin@admin.com',
+        DB::table('donators')->insert([
+            'email' => 'adi@adi.com',
             'password' => '$2y$10$sm3wH/.E/AOkQkjUPG6Bdu2bu86X8p/Qgk9rPneygnMqI8Vpj/ee.',
-            'is_verified' => '1',
-            'is_admin' => '1',
-        ]);
-        DB::table('users')->insert([
-            'email' => 'haziq@haziq.com',
-            'password' => '$2y$10$sm3wH/.E/AOkQkjUPG6Bdu2bu86X8p/Qgk9rPneygnMqI8Vpj/ee.',
+            'phone_number' => '01140207828'
         ]);
     }
 }

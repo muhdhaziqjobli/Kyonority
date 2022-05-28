@@ -3,20 +3,34 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Donator extends Model
+class Donator extends Authenticatable
 {
     use HasFactory;
 
-    protected $fillable = [
-        'donation_id',
-        'email',
-        'phone_number',
+    protected $guarded = ['id'];
+
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
-    public function donation()
+    protected $fillable = [
+        'email',
+        'phone_number',
+        'password'
+    ];
+
+    public function getAuthPassword()
     {
-        return $this->belongsTo(Donation::class);
+        return $this->password;
+    }
+
+    public function requests()
+    {
+        return $this->belongsToMany(Request::class)
+                ->as('donation')
+                ->withPivot('type', 'price')
+                ->withTimestamps();
     }
 }
