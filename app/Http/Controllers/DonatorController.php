@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Request as Req;
 use App\Models\Donator;
 use App\Models\BankAccount;
+use App\Mail\ReceiptMail;
 
 class DonatorController extends Controller
 {
@@ -91,5 +92,24 @@ class DonatorController extends Controller
     {
         $bank = BankAccount::find($request->id);
         return response()->json($bank, 200);
+    }
+
+    public function donate(Request $request, $donator_id, $request_id)
+    {
+        $donator = Donator::find($donator_id);
+        $donator->requests()->attach($request_id, ['type' => $request->type, 'price' => $request->price]);
+
+        $req = Req::find($request_id);
+
+        //Send Receipt
+        $date = date("jS F Y") . ", " . date("h:i:s A");
+        $details = [
+            'price' => $request->price,
+            'date'  => $date,
+            'receiver' => $req->user->user_detail->name
+        ];
+        \Mail::to($donator->email)->send(new ReceiptMail($details));
+
+        return back()->with('success','Thank you for your contribution! Receipt will be emailed to you soon!');
     }
 }

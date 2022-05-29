@@ -10,6 +10,10 @@
     <h2>Donation Requests</h2>
     </div>
 
+    @if (Session::has('success'))
+        <div class="alert alert-success"> {{Session::get('success')}} </div>
+    @endif
+
     <div class="row">
 
         @foreach ($requests as $request)
@@ -68,18 +72,21 @@
                             <div>Choose Delivery Service:</div>
                             <a class="btn btn-outline-success btn-sm rounded-pill" href="https://food.grab.com/my/en/" target="_blank">Grab</a>
                             <a class="btn btn-outline-danger btn-sm rounded-pill" href="https://www.foodpanda.my/" target="_blank">FoodPanda</a>
-
+                            
+                            {{ Form::open(['url' => route('donators.donate', ['donator_id' => Auth::guard('donator')->user()->id, 'request_id' => $request->id]), 'method' => 'post']) }}
+                            {{ Form::hidden('type', 'aid') }}
                             <div class="mt-3">Total Cost:</div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">RM</span>
                                 </div>
-                                <input type="number" step="0.01" class="form-control">
+                                <input type="number" step="0.01" class="form-control" name="price">
                             </div>
 
                             <div class="float-end mt-3">
                                 <button class="btn btn-primary mb-3">Donate</button>
                             </div>
+                            {{ Form::close() }}
                         </div>
                     </div>
                 </div>
@@ -108,17 +115,20 @@
 
                     <div id="bank-details-{{$request->id}}"></div>
 
+                    {{ Form::open(['url' => route('donators.donate', ['donator_id' => Auth::guard('donator')->user()->id, 'request_id' => $request->id]), 'method' => 'post']) }}
+                    {{ Form::hidden('type', 'monetary') }}
                     <div class="mt-3">Donation Amount:</div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">RM</span>
                         </div>
-                        <input type="number" step="0.01" class="form-control">
+                        <input type="number" step="0.01" class="form-control" name="price">
                     </div>
 
                     <div class="float-end mt-3">
                         <button class="btn btn-primary mb-3">Donate</button>
                     </div>
+                    {{ Form::close() }}
                 </table>
             </div>
         </div>
