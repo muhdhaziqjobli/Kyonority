@@ -64,8 +64,7 @@
                 @csrf
             </form>
             @else
-            <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-            <li><a class="getstarted" href="{{ route('register') }}">Click Here to Start Receiving Donations</a></li>
+            <li><a class="getstarted" href="{{ route('login') }}">Click Here to Start Receiving Donations</a></li>
             @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -100,6 +99,8 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
 
     @stack('js')
 

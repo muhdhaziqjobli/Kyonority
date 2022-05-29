@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Request as Req;
 use App\Models\Donator;
+use App\Models\BankAccount;
 
 class DonatorController extends Controller
 {
@@ -84,5 +85,11 @@ class DonatorController extends Controller
         ]);
 
         return view('donators.index', $data);
+    }
+
+    public function get_bank(Request $request)
+    {
+        $bank = BankAccount::find($request->id);
+        return response()->json($bank, 200);
     }
 }

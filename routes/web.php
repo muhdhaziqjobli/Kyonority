@@ -57,3 +57,4 @@ Route::get('/donators/login', [App\Http\Controllers\DonatorController::class, 'l
 Route::post('/donators/authenticate', [App\Http\Controllers\DonatorController::class, 'authenticate'])->name('donators.authenticate');
 Route::post('/donators/logout', [App\Http\Controllers\DonatorController::class, 'logout'])->name('donators.logout');
 Route::get('/donators/index', [App\Http\Controllers\DonatorController::class, 'index'])->name('donators.index');
+Route::get('/donators/get-bank', [App\Http\Controllers\DonatorController::class, 'get_bank'])->name('donators.get_bank');
