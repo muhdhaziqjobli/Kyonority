@@ -56,12 +56,12 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#collapseTwo" data-bs-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="false" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#collapseOne" data-bs-toggle="collapse" data-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Users</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('admin.user_list') }}">All User List</a>
                         <a class="collapse-item" href="{{ route('admin.unverified_users') }}">Unverified List</a>
@@ -74,15 +74,21 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Report
+                Other
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.report') }}">
+                <a class="nav-link collapsed" href="#collapseTwo" data-bs-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Generate Report</span>
+                    <span>Report</span>
                 </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{ route('admin.report') }}">Generate Report</a>
+                        <a class="collapse-item" href="{{ route('admin.report_list') }}">Saved Reports</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Divider -->

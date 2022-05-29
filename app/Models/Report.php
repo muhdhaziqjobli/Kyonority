@@ -11,9 +11,16 @@ class Report extends Model
 
     protected $fillable = [
         'user_id',
+        'user_count',
+        'donator_count',
+        'request_count',
         'donation_count',
-        'total_price',
-        'no_of_users',
+        'monetary_count',
+        'aid_count',
+        'total_donation',
+        'highest_donation',
+        'net_monetary',
+        'net_aid',
     ];
 
     public function user()

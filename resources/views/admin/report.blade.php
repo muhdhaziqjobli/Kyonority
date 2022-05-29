@@ -14,6 +14,20 @@
     @endif
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Report</h1>
+        {{ Form::open(['url' => route('admin.save_report'), 'method' => 'post']) }}
+        {{ Form::hidden('user_id', Auth::user()->id) }}
+        {{ Form::hidden('user_count', $userCount) }}
+        {{ Form::hidden('donator_count', $donatorCount) }}
+        {{ Form::hidden('request_count', $requestCount) }}
+        {{ Form::hidden('donation_count', $donationCount) }}
+        {{ Form::hidden('monetary_count', $monetaryCount) }}
+        {{ Form::hidden('aid_count', $aidCount) }}
+        {{ Form::hidden('total_donation', $totalDonation) }}
+        {{ Form::hidden('highest_donation', $highestDonation) }}
+        {{ Form::hidden('net_monetary', $netMonetary) }}
+        {{ Form::hidden('net_aid', $netAid) }}
+        <button class="btn btn-primary float-right">Save</button>
+        {{ Form::close() }}
     </div>
 
     <!-- Content Row -->

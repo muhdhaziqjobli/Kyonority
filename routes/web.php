@@ -51,6 +51,8 @@ Route::get('/users', [App\Http\Controllers\AdminController::class, 'user_index']
 Route::get('/unverified_users', [App\Http\Controllers\AdminController::class, 'unverified_users'])->name('admin.unverified_users');
 Route::post('/unverified_users/{id}', [App\Http\Controllers\AdminController::class, 'verify'])->name('admin.verify');
 Route::get('/report', [App\Http\Controllers\AdminController::class, 'report'])->name('admin.report');
+Route::post('/report', [App\Http\Controllers\AdminController::class, 'save_report'])->name('admin.save_report');
+Route::get('/report-list', [App\Http\Controllers\AdminController::class, 'report_list'])->name('admin.report_list');
 
 Route::get('/donators/register', [App\Http\Controllers\DonatorController::class, 'register'])->name('donators.register');
 Route::post('/donators/register', [App\Http\Controllers\DonatorController::class, 'register_donator'])->name('donators.register_donator');

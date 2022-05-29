@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Donator;
+use App\Models\Report;
 use App\Models\Request as Req;
 
 use Illuminate\Http\Request;
@@ -40,6 +41,24 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->route('admin.unverified_users');
+    }
+
+    public function save_report(Request $request)
+    {
+        $report = Report::create($request->all());
+
+        return back()->with('success','Report Saved!');
+    }
+
+    public function report_list()
+    {
+        $reports = Report::all();
+
+        $data = compact([
+            'reports'
+        ]);
+
+        return view('admin.saved_report', $data);
     }
 
     public function report()
