@@ -50,6 +50,7 @@ Route::get('/location', [App\Http\Controllers\LocationController::class, 'create
 Route::get('/users', [App\Http\Controllers\AdminController::class, 'user_index'])->name('admin.user_list');
 Route::get('/unverified_users', [App\Http\Controllers\AdminController::class, 'unverified_users'])->name('admin.unverified_users');
 Route::post('/unverified_users/{id}', [App\Http\Controllers\AdminController::class, 'verify'])->name('admin.verify');
+Route::get('/report', [App\Http\Controllers\AdminController::class, 'report'])->name('admin.report');
 
 Route::get('/donators/register', [App\Http\Controllers\DonatorController::class, 'register'])->name('donators.register');
 Route::post('/donators/register', [App\Http\Controllers\DonatorController::class, 'register_donator'])->name('donators.register_donator');

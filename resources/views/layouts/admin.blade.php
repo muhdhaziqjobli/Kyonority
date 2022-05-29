@@ -55,14 +55,6 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.unverified_users') }}">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Unverified Users</span>
-                </a>
-            </li> --}}
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#collapseTwo" data-bs-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="false" aria-controls="collapseTwo">
@@ -75,6 +67,22 @@
                         <a class="collapse-item" href="{{ route('admin.unverified_users') }}">Unverified List</a>
                     </div>
                 </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Report
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.report') }}">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Generate Report</span>
+                </a>
             </li>
 
             <!-- Divider -->

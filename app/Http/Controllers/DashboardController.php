@@ -32,7 +32,7 @@ class DashboardController extends Controller
                 'unverified_users'
             ]);
 
-            return view('admin_dashboard',$data);
+            return view('admin.dashboard',$data);
         }
 
         else if (Auth::user()->user_detail) {
