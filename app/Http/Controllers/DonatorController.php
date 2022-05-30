@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Request as Req;
 use App\Models\Donator;
 use App\Models\BankAccount;
+use App\Models\UserDetail;
 use App\Mail\ReceiptMail;
+use DB;
 
 class DonatorController extends Controller
 {
@@ -79,8 +81,6 @@ class DonatorController extends Controller
         $requests = Req::where('is_active', 1)
                     ->get();
 
-        // dd($requests);
-
         $data = compact([
             'requests'
         ]);
@@ -111,5 +111,44 @@ class DonatorController extends Controller
         \Mail::to($donator->email)->send(new ReceiptMail($details));
 
         return back()->with('success','Thank you for your contribution! Receipt will be emailed to you soon!');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        $id_arr = [];
+
+        $user_details = UserDetail::where(function($query) use ($search) {
+                            $query->where('name', 'like', "%{$search}%");
+                        })->get();
+
+        foreach ($user_details as $user_detail) {
+            array_push($id_arr,$user_detail->user->request->id);
+        }
+
+        $requests = Req::find($id_arr)->where('is_active', 1);
+
+        $data = compact([
+            'requests'
+        ]);
+
+        return view('donators.index', $data);
+    }
+
+    public function filter(Request $request)
+    {
+        $filter = $request->filter;
+
+        $requests = Req::where('is_active', 1)
+                    ->where(function($query) use ($filter) {
+                        $query->where('icons', 'like', "%{$filter}%");
+                    })
+                    ->get();
+
+        $data = compact([
+            'requests'
+        ]);
+
+        return view('donators.index', $data);
     }
 }

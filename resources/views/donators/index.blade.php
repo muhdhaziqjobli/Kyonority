@@ -15,6 +15,28 @@
     @endif
 
     <div class="row">
+        <div class="col-10">
+            {{ Form::open(['url' => route('donators.search'), 'method' => 'post', 'id' => 'searchForm']) }}
+            <input type="text" class="form-control" name="search" id="search" placeholder="Search by name">
+            {{ Form::close() }}
+        </div>
+        <div class="col-1">
+            {{ Form::open(['url' => route('donators.filter'), 'method' => 'post', 'id' => 'filterForm']) }}
+            <select name="filter" id="filter" class="form-control">
+                <option value="all" disabled selected>Filter by preferred aid</option>
+                <option value="money">Money</option>
+                <option value="food">Food</option>
+                <option value="medicine">Medicine</option>
+                <option value="baby">Baby</option>
+            </select>
+            {{ Form::close() }}
+        </div>
+        <div class="col-1 mt-1">
+            <a href="{{ route('donators.index') }}" class="btn btn-outline-primary btn-sm">Reset</a>
+        </div>
+    </div>
+
+    <div class="row">
 
         @foreach ($requests as $request)
             <div class="col-4 mt-4">
@@ -144,6 +166,16 @@
 @push('js')
 <script>
     $(document).ready(function(){
+        $('#search').on('keypress',function(e) {
+            if(e.which == 13) {
+                $('#searchForm').submit();
+            }
+        });
+
+        $('#filter').on('change',function(e) {
+            $('#filterForm').submit();
+        });
+
         @foreach ($requests as $request)
             $("#select-bank-{{$request->id}}").change(function(){
                 $("#bank-details-{{$request->id}}").empty();
