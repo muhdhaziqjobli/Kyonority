@@ -38,12 +38,35 @@ class DashboardController extends Controller
         else if (Auth::user()->user_detail) {
             $user = Auth::user();
 
+            if (Auth::user()->user_detail->coord) {
+                $coord = str_replace( ['(',')',' '], '', Auth::user()->user_detail->coord);
+                $coord = explode(',', $coord);
+    
+                $latitude = $coord[0];
+                $longitude = $coord[1];
+            }
+
             if ($user->request) {
                 $icons = $user->request->icons;
+            }
 
+            if (isset($latitude) && isset($icons)) {
+                $data = compact([
+                    'user',
+                    'icons',
+                    'latitude',
+                    'longitude'
+                ]);
+            } elseif (isset($icons)) {
                 $data = compact([
                     'user',
                     'icons'
+                ]);
+            } elseif (isset($latitude)) {
+                $data = compact([
+                    'user',
+                    'latitude',
+                    'longitude'
                 ]);
             } else {
                 $data = compact([

@@ -68,7 +68,11 @@
                             <div>{{ $request->user->user_detail->address }}</div>
                             <div>{{ $request->user->user_detail->postcode }}, {{ $request->user->user_detail->city }}</div>
                             <div class="mb-3">{{ $request->user->user_detail->state }}</div>
-
+                            
+                            @if ($request->user->user_detail->coord)
+                                <div id="map{{$request->id}}" style="height: 20vh; width: 100%;" class="mb-3"></div>
+                            @endif
+                            
                             <div>Choose Delivery Service:</div>
                             <a class="btn btn-outline-success btn-sm rounded-pill" href="https://food.grab.com/my/en/" target="_blank">Grab</a>
                             <a class="btn btn-outline-danger btn-sm rounded-pill" href="https://www.foodpanda.my/" target="_blank">FoodPanda</a>
@@ -174,5 +178,38 @@
             });
         @endforeach
     });
+</script>
+
+<script>
+    function initMap() {
+        @foreach ($requests as $request)
+        @if ($request->user->user_detail->coord)
+            @php
+                $coord = str_replace( ['(',')',' '], '', $request->user->user_detail->coord);
+                $coord = explode(',', $coord);
+
+                $latitude = $coord[0];
+                $longitude = $coord[1];
+            @endphp
+            var marker{{$request->id}};
+            const myLatLng{{$request->id}} = { lat: {{$latitude}}, lng: {{$longitude}} };
+
+            const map{{$request->id}} = new google.maps.Map(document.getElementById("map{{$request->id}}"), {
+                zoom: 15,
+                center: myLatLng{{$request->id}},
+            });
+
+            marker{{$request->id}} = new google.maps.Marker({
+                position: myLatLng{{$request->id}},
+            });
+
+            marker{{$request->id}}.setMap(map{{$request->id}});
+        @endif
+        @endforeach
+    }
+</script>
+
+<script type="text/javascript"
+    src="https://maps.google.com/maps/api/js?key=AIzaSyB2xmMWhlZWfV7ZuVXMK72D3fVfkH-CafU&callback=initMap" >
 </script>
 @endpush

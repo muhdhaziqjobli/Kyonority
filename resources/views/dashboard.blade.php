@@ -71,6 +71,36 @@
                 </div>
             </div>
         </div>
+
+        @if ($user->user_detail->coord)
+        <div class="col-xl-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Your Location</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div id="map" style="height: 20vh; width: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        @else
+        <div class="col-xl-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Your Location</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    You have not pinned your location. Pin your location 
+                    <a href="{{ route('location.create') }}">here</a>
+                    to ensure donators can find you.
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
     <div class="row">
         <div class="col-xl-12">
@@ -158,5 +188,31 @@
         });
         @endif
     });
-</script>    
+</script>
+
+@if ($user->user_detail->coord)
+<script type="text/javascript">
+
+    function initMap() {
+        var marker;
+        const myLatLng = { lat: {{$latitude}}, lng: {{$longitude}} };
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: myLatLng,
+        });
+
+        marker= new google.maps.Marker({
+            position: myLatLng,
+            map,
+        });
+    }
+
+    window.initMap = initMap;
+</script>
+
+<script type="text/javascript"
+    src="https://maps.google.com/maps/api/js?key=AIzaSyB2xmMWhlZWfV7ZuVXMK72D3fVfkH-CafU&callback=initMap" >
+</script>
+@endif
 @endpush

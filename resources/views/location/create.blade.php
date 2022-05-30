@@ -75,15 +75,16 @@
             marker = new google.maps.Marker({
                 position: mapsMouseEvent.latLng,
                 map: map
-        });
+            });
             
-        marker.setMap(map);
-    });
+            marker.setMap(map);
+        });
     }
 
     window.initMap = initMap;
 </script>
 
 <script type="text/javascript"
-    src="https://maps.google.com/maps/api/js?key=AIzaSyB2xmMWhlZWfV7ZuVXMK72D3fVfkH-CafU&callback=initMap" ></script>
+    src="https://maps.google.com/maps/api/js?key=AIzaSyB2xmMWhlZWfV7ZuVXMK72D3fVfkH-CafU&callback=initMap" >
+</script>
 @endpush
