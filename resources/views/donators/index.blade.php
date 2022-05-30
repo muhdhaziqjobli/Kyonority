@@ -15,15 +15,24 @@
     @endif
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-9">
             {{ Form::open(['url' => route('donators.search'), 'method' => 'post', 'id' => 'searchForm']) }}
             <input type="text" class="form-control" name="search" id="search" placeholder="Search by name">
             {{ Form::close() }}
         </div>
         <div class="col-1">
+            {{ Form::open(['url' => route('donators.sort'), 'method' => 'post', 'id' => 'sortForm']) }}
+            <select name="sort" id="sort" class="form-control">
+                <option value="all" disabled selected>Sort by:</option>
+                <option value="latest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+            {{ Form::close() }}
+        </div>
+        <div class="col-1">
             {{ Form::open(['url' => route('donators.filter'), 'method' => 'post', 'id' => 'filterForm']) }}
             <select name="filter" id="filter" class="form-control">
-                <option value="all" disabled selected>Filter by preferred aid</option>
+                <option value="all" disabled selected>Filter by:</option>
                 <option value="money">Money</option>
                 <option value="food">Food</option>
                 <option value="medicine">Medicine</option>
@@ -174,6 +183,10 @@
 
         $('#filter').on('change',function(e) {
             $('#filterForm').submit();
+        });
+
+        $('#sort').on('change',function(e) {
+            $('#sortForm').submit();
         });
 
         @foreach ($requests as $request)

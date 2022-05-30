@@ -151,4 +151,25 @@ class DonatorController extends Controller
 
         return view('donators.index', $data);
     }
+
+    public function sort(Request $request)
+    {
+        $sort = $request->sort;
+
+        if ($sort == 'latest') {
+            $requests = Req::where('is_active', 1)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+        } else {
+            $requests = Req::where('is_active', 1)
+                        ->orderBy('created_at', 'asc')
+                        ->get();
+        }
+
+        $data = compact([
+            'requests'
+        ]);
+
+        return view('donators.index', $data);
+    }
 }
