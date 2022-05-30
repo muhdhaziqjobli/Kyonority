@@ -21,6 +21,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    @stack('css')
+
 </head>
 
 <body id="page-top">
