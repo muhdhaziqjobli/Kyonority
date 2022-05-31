@@ -129,7 +129,8 @@ class DonatorController extends Controller
         $requests = Req::find($id_arr)->where('is_active', 1);
 
         $data = compact([
-            'requests'
+            'requests',
+            'search'
         ]);
 
         return view('donators.index', $data);
@@ -146,7 +147,8 @@ class DonatorController extends Controller
                     ->get();
 
         $data = compact([
-            'requests'
+            'requests',
+            'filter'
         ]);
 
         return view('donators.index', $data);
@@ -167,7 +169,8 @@ class DonatorController extends Controller
         }
 
         $data = compact([
-            'requests'
+            'requests',
+            'sort'
         ]);
 
         return view('donators.index', $data);

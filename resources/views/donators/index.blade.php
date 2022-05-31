@@ -17,26 +17,26 @@
     <div class="row">
         <div class="col-9">
             {{ Form::open(['url' => route('donators.search'), 'method' => 'post', 'id' => 'searchForm']) }}
-            <input type="text" class="form-control" name="search" id="search" placeholder="Search by name">
+            <input type="text" class="form-control" name="search" id="search" placeholder="Search by name" @if (isset($search)) value="{{$search}}" @endif>
             {{ Form::close() }}
         </div>
         <div class="col-1">
             {{ Form::open(['url' => route('donators.sort'), 'method' => 'post', 'id' => 'sortForm']) }}
             <select name="sort" id="sort" class="form-control">
-                <option value="all" disabled selected>Sort by:</option>
-                <option value="latest">Newest</option>
-                <option value="oldest">Oldest</option>
+                <option value="all" disabled @if (!isset($sort)) selected @endif>Sort by:</option>
+                <option value="latest" @if (isset($sort)) @if ($sort == "latest") selected @endif @endif>Newest</option>
+                <option value="oldest" @if (isset($sort)) @if ($sort == "oldest") selected @endif @endif>Oldest</option>
             </select>
             {{ Form::close() }}
         </div>
         <div class="col-1">
             {{ Form::open(['url' => route('donators.filter'), 'method' => 'post', 'id' => 'filterForm']) }}
             <select name="filter" id="filter" class="form-control">
-                <option value="all" disabled selected>Filter by:</option>
-                <option value="money">Money</option>
-                <option value="food">Food</option>
-                <option value="medicine">Medicine</option>
-                <option value="baby">Baby</option>
+                <option value="all" disabled @if (!isset($filter)) selected @endif>Filter by:</option>
+                <option value="money" @if (isset($filter)) @if ($filter == "money") selected @endif @endif>Money</option>
+                <option value="food" @if (isset($filter)) @if ($filter == "food") selected @endif @endif>Food</option>
+                <option value="medicine" @if (isset($filter)) @if ($filter == "medicine") selected @endif @endif>Medicine</option>
+                <option value="baby" @if (isset($filter)) @if ($filter == "baby") selected @endif @endif>Baby</option>
             </select>
             {{ Form::close() }}
         </div>

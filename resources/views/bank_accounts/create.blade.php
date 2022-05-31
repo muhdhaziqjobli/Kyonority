@@ -63,6 +63,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     Submit
                                 </button>
+                                <a href="{{ route('dashboard') }}" class="btn btn-primary">
+                                    Cancel
+                                </a>
                             </div>
                         </div>
                     </form>
