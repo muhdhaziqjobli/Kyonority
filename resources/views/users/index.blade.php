@@ -62,6 +62,10 @@
                         <div class="col-8">
                             <table class="table table-borderless">
                                 <tr>
+                                    <td><strong>Bio</strong></td>
+                                    <td>{{ $user->user_detail->bio ?? 'N/A'}}</td>
+                                </tr>
+                                <tr>
                                     <td><strong>Age</strong></td>
                                     <td>{{ $user->user_detail->age ?? 'N/A'}}</td>
                                 </tr>
