@@ -20,7 +20,7 @@
                         @csrf
 
                         <input type="hidden" value="{{Auth::user()->id}}" name="user_id">
-                        <input type="hidden" value="1" name="is_active">
+                        <input type="hidden" value="{{$request->is_active}}" name="is_active">
 
                         <div class="row mb-3 text-center">
                             <label for="details" class="col-2 col-form-label text-md-end">Details</label>

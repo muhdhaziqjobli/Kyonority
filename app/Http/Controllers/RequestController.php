@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Request as Req;
 use App\Models\User;
+use Auth;
 
 class RequestController extends Controller
 {
@@ -52,6 +53,13 @@ class RequestController extends Controller
 
     public function update_status($id) {
         $request = Req::findOrFail($id);
+
+        if (request('is_active') == '1') {
+            if (!Auth::user()->is_verified) {
+                dd('test');
+                return redirect('/dashboard')->error('Account is unverified!');
+            }
+        }
 
         $request->is_active = request('is_active');
         $request->save();

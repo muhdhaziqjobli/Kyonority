@@ -179,10 +179,11 @@
                 },
                 success: function(data){
                     location.reload(true);
-                    console.log(data);
+                    // console.log(data);
                 },
                 error: function (data, textStatus, errorThrown) {
-                    console.log(data);
+                    // console.log(data);
+                    alert('Account is unverified! Activating request is prohibited!');
                 },
             });
         });
