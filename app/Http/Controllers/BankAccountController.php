@@ -29,7 +29,12 @@ class BankAccountController extends Controller
 
     public function create()
     {
-        return view('bank_accounts.create');
+        if (Auth::user()->is_verified) {
+            return view('bank_accounts.create');
+        }
+        else {
+            return redirect('/dashboard')->withErrors('Account must be verified!');
+        }
     }
 
     public function store(Request $request)
